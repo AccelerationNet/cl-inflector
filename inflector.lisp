@@ -1,7 +1,5 @@
 (defpackage :cl-inflector
-    (:use :cl
-	  :cl-ppcre
-	  :cl-utils)
+    (:use :cl :cl-ppcre)
   (:export :pluralize
 	   :plural-of
 	   :singularize

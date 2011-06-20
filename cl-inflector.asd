@@ -1,31 +1,31 @@
 ;; -*- lisp -*-
 
 (eval-when (:compile-toplevel :load-toplevel :execute)
-  (unless (find-package :vana-inflector.system)
-    (defpackage :vana-inflector.system
+  (unless (find-package :cl-inflector.system)
+    (defpackage :cl-inflector.system
 	(:use :common-lisp :asdf))))
 
-(in-package :vana-inflector.system)
+(in-package :cl-inflector.system)
 
-(defsystem :vana-inflector
+(defsystem :cl-inflector
   :description "Functions to pluralize and singularize english languages words"
   :licence "MIT"
   :version "0.1"
   :components ((:file "utils")
 	       (:file "inflector"))
-  :depends-on (:cl-ppcre))
+  :depends-on (:cl-ppcre :alexandria))
 
-(defsystem :vana-inflector-test
+(defsystem :cl-inflector-test
   :description "Functions to pluralize and singularize english languages words"
   :licence "MIT"
   :version "0.1"
   :components ((:module :tests
 			:serial t
 			:components ((:file "inflector"))))
-  :depends-on (:vana-inflector :lisp-unit))
+  :depends-on (:cl-inflector :lisp-unit))
 
-(defmethod asdf:perform ((o asdf:test-op) (c (eql (find-system :vana-inflector))))
-  (asdf:oos 'asdf:load-op :vana-inflector-test))
+(defmethod asdf:perform ((o asdf:test-op) (c (eql (find-system :cl-inflector))))
+  (asdf:oos 'asdf:load-op :cl-inflector-test))
 
 ;; Copyright (c) 2010 Sean Grove, http://trapm.com/
 

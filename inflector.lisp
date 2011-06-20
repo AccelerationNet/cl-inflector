@@ -1,7 +1,7 @@
-(defpackage :vana-inflector
+(defpackage :cl-inflector
     (:use :cl
 	  :cl-ppcre
-	  :vana-utils)
+	  :cl-utils)
   (:export :pluralize
 	   :plural-of
 	   :singularize
@@ -11,7 +11,7 @@
 	   :uncountable?
 	   :uncountable))
 
-(in-package :vana-inflector)
+(in-package :cl-inflector)
 
 ;; Adapted *cough*ripped*cough* from rails inflector.rb
 ;;; singular->plurals regular expressions
@@ -69,16 +69,17 @@
 	"sheep" "jeans" "news" ))
 
 (defparameter *irregulars*
-  (args->alist
-   "is"     "are"
-   "person" "people"
-   "man"    "men"
-   "woman"  "women"
-   "child"  "children"
-   "move"   "moves"
-   "movie"  "movies"
-   "buzz"   "buzzes"
-   ))
+  (alexandria:plist-alist
+   (list
+    "is"     "are"
+    "person" "people"
+    "man"    "men"
+    "woman"  "women"
+    "child"  "children"
+    "move"   "moves"
+    "movie"  "movies"
+    "buzz"   "buzzes"
+    )))
 
 ;; Interface for adding new *uncountables*, querying, etc.
 (defun uncountable (word)
@@ -97,7 +98,7 @@
   (rassoc word *irregulars* :test #'string-equal))
 
 (defun irregular-singular? (word)
-  (-> word *irregulars*))
+  (car (assoc word *irregulars* :test #'string-equal)))
 
 (defun irregular? (word)
   (or (irregular-singular? word)
@@ -112,7 +113,7 @@
 (defun get-irregular-plural (singular)
   (if (irregular-plural? singular)
       singular
-      (-> singular *irregulars*)))
+      (cdr (assoc key *irregulars* :test #'string-equal))))
 
 (defun plural (rule replacement)
   "Adds a plural rule, where RULE can be either a string or a regex, and REPLACEMENT can contain capture references defined in RULE"

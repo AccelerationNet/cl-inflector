@@ -1,9 +1,9 @@
-(defpackage :vana-inflector-test
+(defpackage :cl-inflector-test
   (:use :cl
-        :vana-inflector
+        :cl-inflector
         :lisp-unit))
 
-(in-package :vana-inflector-test)
+(in-package :cl-inflector-test)
 
 (define-test test-plural-of-regular
   (loop for word in (list "quiz" "buzz" "fez" "whiz" "wiz" "wolf" "wife")
@@ -25,7 +25,7 @@
   )
 
 (define-test test-add-irregular
-  (let ((vana-inflector::*irregulars* vana-inflector::*irregulars*))
+  (let ((cl-inflector::*irregulars* cl-inflector::*irregulars*))
     (assert-equal "blurbles" (plural-of "blurble"))
     (irregular "blurble" "blurblix")
     (assert-equal "blurblix" (plural-of "blurble"))))
@@ -37,7 +37,7 @@
   (assert-equal "sheep" (singular-of "sheep")))
 
 (define-test test-add-uncountable
-  (let ((vana-inflector::*uncountables* vana-inflector::*uncountables*))
+  (let ((cl-inflector::*uncountables* cl-inflector::*uncountables*))
     (assert-equal "cackles" (plural-of "cackle"))
     (uncountable "cackle")
     (assert-equal "cackle" (plural-of "cackle"))))

@@ -1,20 +1,22 @@
-Vana Inflector
+CL-Inflector
 ========
 
 A common lisp library to easily pluralize and singularize English words.
 
-This is a support package for the [Vana web framework][1], and is a port of the same from Rails' ActiveSupport module.
+This is a port of the ruby ActiveSupport Inflector module
+
+This was originally a support package for the [Vana web framework][1]
 
 Installation
 ------------------
 
-    > (ql:quickload 'vana-inflector)
+    > (ql:quickload 'cl-inflector)
 
 Usage
 -----------
 Example Usage:
 
-    > (use-package :vana-inflector)
+    > (use-package :cl-inflector)
     > (let ((dollars 1.7)
             (users 34)
             (purchases 1))

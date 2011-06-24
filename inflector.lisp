@@ -111,7 +111,7 @@
 (defun get-irregular-plural (singular)
   (if (irregular-plural? singular)
       singular
-      (cdr (assoc key *irregulars* :test #'string-equal))))
+      (cdr (assoc singular *irregulars* :test #'string-equal))))
 
 (defun plural (rule replacement)
   "Adds a plural rule, where RULE can be either a string or a regex, and REPLACEMENT can contain capture references defined in RULE"

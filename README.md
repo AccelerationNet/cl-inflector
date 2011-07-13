@@ -5,11 +5,9 @@ A common lisp library to easily pluralize and singularize English words.
 
 This is a port of the ruby ActiveSupport Inflector module
 
-This was originally a support package for the [Vana web framework][1]
-
 Installation
 ------------------
-
+Hopefully eventually:
     > (ql:quickload 'cl-inflector)
 
 Usage
@@ -75,11 +73,6 @@ Use `uncountable` to add an uncountable:
     > (plural-of "advice")
     "advice"
 
-TODO
--------
- * Expand the default lookup lists? Possible (but probably negligible) performance tradeoff for completeness
- * Add methods to transfer between CamelCase, whatJavaScriptDoes, this_underscore_style, and-lisp-style
-
 License
 ---------------
 
@@ -87,7 +80,7 @@ Released under the MIT license, please see `LICENSE` for more details
 
 Thanks
 -------------
-
+  - This was originally a support package for the [Vana web framework][1]
   - [Xach][2] - For [quicklisp][3], really made getting back into CL much easier.
   - Siebel - For [PCL][4], which has been a great reference.
 

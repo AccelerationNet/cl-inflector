@@ -89,3 +89,10 @@ Thanks
   [2]: http://xach.livejournal.com/
   [3]: http://www.quicklisp.org/
   [4]: http://gigamonkeys.com/book/
+
+## Authors
+ * [SGrove](https://github.com/sgrove)
+ * [Acceleration.net](http://www.acceleration.net/) - [Donate](http://www.acceleration.net/programming/donate-to-acceleration-net/)
+  * [Russ Tyndall](http://russ.unwashedmeme.com/blog)
+  * [Nathan Bird](http://the.unwashedmeme.com/blog)
+  * [Ryan Davis](http://ryepup.unwashedmeme.com/blog)

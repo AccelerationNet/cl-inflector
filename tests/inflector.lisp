@@ -47,4 +47,4 @@
   (assert-equal "ox" (singular-of "oxen"))
   (assert-equal "life" (singular-of "lives")))
 
-(run-tests)
+(run-tests :all)

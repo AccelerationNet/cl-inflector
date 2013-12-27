@@ -21,10 +21,13 @@
   :components ((:module :tests
 			:serial t
 			:components ((:file "inflector"))))
-  :depends-on (:cl-inflector :lisp-unit))
+  :depends-on (:cl-inflector :lisp-unit2))
 
 (defmethod asdf:perform ((o asdf:test-op) (c (eql (find-system :cl-inflector))))
-  (asdf:oos 'asdf:load-op :cl-inflector-test))
+  (asdf:oos 'asdf:load-op :cl-inflector-test)
+  (let ((*package* (find-package :cl-inflector-test)))
+    (eval (read-from-string "(with-summary (:name :cl-inflector)
+                                (run-tests :package :cl-inflector-test))"))))
 
 ;; Copyright (c) 2010 Sean Grove, http://trapm.com/
 

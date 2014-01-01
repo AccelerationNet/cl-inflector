@@ -26,8 +26,9 @@
 (defmethod asdf:perform ((o asdf:test-op) (c (eql (find-system :cl-inflector))))
   (asdf:oos 'asdf:load-op :cl-inflector-test)
   (let ((*package* (find-package :cl-inflector-test)))
-    (eval (read-from-string "(with-summary (:name :cl-inflector)
-                                (run-tests :package :cl-inflector-test))"))))
+    (eval (read-from-string "(run-tests :package :cl-inflector-test
+                                        :name :cl-inflector
+                                        :run-contexts #'with-summary-context)"))))
 
 ;; Copyright (c) 2010 Sean Grove, http://trapm.com/
 

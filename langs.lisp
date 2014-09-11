@@ -141,14 +141,15 @@ Defaults to en_US.")
   "Current language used.
 Defaults to en_US.")
 
-(defparameter *langs-plist* (list :en_US (list *plurals-en-us*
-                                             *singulars-en-us*
-                                             *uncountables-en-us*
-                                             *irregulars-en-us*)
-                                  :pt_BR (list *plurals-pt-br*
-                                               *singulars-pt-br*
-                                               *uncountables-pt-br*
-                                               *irregulars-pt-br*)))
+(defparameter *langs-plist*
+  (list :en_US (list *plurals-en-us*
+                     *singulars-en-us*
+                     *uncountables-en-us*
+                     *irregulars-en-us*)
+        :pt_BR (list *plurals-pt-br*
+                     *singulars-pt-br*
+                     *uncountables-pt-br*
+                     *irregulars-pt-br*)))
 
 (defun available-langs ()
   (remove-if-not #'keywordp *langs-plist*))

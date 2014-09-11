@@ -11,7 +11,8 @@
   :description "Functions to pluralize and singularize english languages words"
   :licence "MIT"
   :version "0.1"
-  :components ((:file "inflector"))
+  :components ((:file "langs")
+               (:file "inflector"))
   :depends-on (:cl-ppcre :alexandria))
 
 (defsystem :cl-inflector-test

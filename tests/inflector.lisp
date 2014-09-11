@@ -4,7 +4,6 @@
         :lisp-unit2))
 (in-package :cl-inflector-test)
 
-
 (define-test test-plural-of-regular-en-us ()
   (set-lang! :en_US)
   (loop for word in (list "quiz" "buzz" "fez" "whiz" "wiz" "wolf" "wife")
@@ -102,5 +101,9 @@
   (assert-equal "doodles" (plural-of "dood"))
   (set-lang! :pt_BR)
   (assert-equal "doods" (plural-of "dood"))
-  (uncountable "dood")
-  (assert-equal "dood" (plural-of "dood")))
+  (irregular "dood" "doodes")
+  (assert-equal "doodes" (plural-of "dood"))
+  (set-lang! :en_US)
+  (assert-equal "doods" (plural-of "dood"))
+  (set-lang! :pt_BR)
+  (assert-equal "doods" (plural-of "dood")))

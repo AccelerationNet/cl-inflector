@@ -8,7 +8,7 @@
 (in-package :cl-inflector.system)
 
 (defsystem :cl-inflector
-  :description "Functions to pluralize and singularize english languages words"
+  :description "Functions to pluralize and singularize english and portuguese languages words"
   :licence "MIT"
   :version "0.2"
   :components ((:file "langs")
@@ -16,9 +16,9 @@
   :depends-on (:cl-ppcre :alexandria))
 
 (defsystem :cl-inflector-test
-  :description "Functions to pluralize and singularize english languages words"
+  :description "Functions to pluralize and singularize english and portuguese languages words"
   :licence "MIT"
-  :version "0.1"
+  :version "0.2"
   :components ((:module :tests
 			:serial t
 			:components ((:file "inflector"))))

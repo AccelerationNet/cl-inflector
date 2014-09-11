@@ -3,11 +3,11 @@ CL-Inflector
 
 A common lisp library to easily pluralize and singularize English words.
 
-This is a port of the ruby ActiveSupport Inflector module
+This is a port of the ruby ActiveSupport Inflector module.
 
 Installation
 ------------------
-Just use quicklisp:
+Just use [Quicklisp](www.quicklisp.org):
     > (ql:quickload 'cl-inflector)
 
 Usage

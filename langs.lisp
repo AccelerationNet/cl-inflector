@@ -167,5 +167,3 @@ Defaults to en_US.")
 
 (defun curr-lang ()
   *curr-lang*)
-
-;; with-lang

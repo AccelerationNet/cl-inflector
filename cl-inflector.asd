@@ -10,7 +10,7 @@
 (defsystem :cl-inflector
   :description "Functions to pluralize and singularize english languages words"
   :licence "MIT"
-  :version "0.1"
+  :version "0.2"
   :components ((:file "langs")
                (:file "inflector"))
   :depends-on (:cl-ppcre :alexandria))

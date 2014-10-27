@@ -1,4 +1,4 @@
-(defpackage :cl-inflector
+(defpackage cl-inflector
   (:use cl cl-ppcre)
   (:import-from cl-inflector.langs
                 *plurals*
@@ -20,7 +20,7 @@
            curr-lang
            set-lang!))
 
-(in-package :cl-inflector)
+(in-package cl-inflector)
 
 (defun uncountable (word)
   "Notifies the inflector that a word is uncountable."

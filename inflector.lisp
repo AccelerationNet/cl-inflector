@@ -1,4 +1,4 @@
-(defpackage :cl-inflector
+(defpackage cl-inflector
   (:use cl cl-ppcre)
   (:import-from cl-inflector.langs
                 *plurals*
@@ -12,6 +12,8 @@
 	   plural-of
 	   singularize
 	   singular-of
+           symb-plural-of
+           symb-singular-of
 	   irregular?
 	   irregular
 	   uncountable?
@@ -20,7 +22,7 @@
            curr-lang
            set-lang!))
 
-(in-package :cl-inflector)
+(in-package cl-inflector)
 
 (defun uncountable (word)
   "Notifies the inflector that a word is uncountable."
@@ -79,6 +81,13 @@
     (cond ((uncountable? word) word)
           ((irregular?   word) (get-irregular-singular word))
           (t (inflector-helper word *singulars*)))))
+
+(defun symb-singular-of (word)
+  (alexandria:symbolicate (string-upcase (singular-of word))))
+
+(defun symb-plural-of (word)
+  (alexandria:symbolicate (string-upcase (plural-of word))))
+
 
 (defun inflector-helper (word regexes)
   (if (null regexes)

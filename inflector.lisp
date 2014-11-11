@@ -1,26 +1,26 @@
 (defpackage :cl-inflector
-  (:use cl cl-ppcre)
+  (:use :cl :cl-ppcre)
   (:import-from cl-inflector.langs
-                *plurals*
-                *singulars*
-                *uncountables*
-                *irregulars*
-                available-langs
-                curr-lang
-                set-lang!)
-  (:export pluralize
-	   plural-of
-	   singularize
-	   singular-of
-           :symbol-plural-of
-           :symbol-singular-of
-           irregular?
-	   irregular
-	   uncountable?
-	   uncountable
-           available-langs
-           curr-lang
-           set-lang!))
+   :*plurals*
+   :*singulars*
+   :*uncountables*
+   :*irregulars*
+   :available-langs
+   :curr-lang
+   :set-lang!)
+  (:export
+   :pluralize
+   :plural-of
+   :singularize
+   :singular-of
+   :symbol-plural-of
+   :irregular?
+   :irregular
+   :uncountable?
+   :uncountable
+   :available-langs
+   :curr-lang
+   :set-lang!))
 
 (in-package :cl-inflector)
 
@@ -93,10 +93,10 @@
       word
       (multiple-value-bind (string match-found?)
           (cl-ppcre:regex-replace
-	   (cl-ppcre:create-scanner
-	    (first (first regexes))
-	    :case-insensitive-mode T)
-	   word (second (first regexes)))
+           (cl-ppcre:create-scanner
+            (first (first regexes))
+            :case-insensitive-mode T)
+           word (second (first regexes)))
         (if match-found?
             string
             (inflector-helper word (rest regexes))))))

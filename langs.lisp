@@ -1,13 +1,14 @@
-(defpackage cl-inflector.langs
-  (:use cl)
-  (:export *plurals*
-           *singulars*
-           *uncountables*
-           *irregulars*
-           available-langs
-           curr-lang
-           set-lang!))
-(in-package cl-inflector.langs)
+(defpackage :cl-inflector.langs
+  (:use :cl)
+  (:export
+   :*plurals*
+   :*singulars*
+   :*uncountables*
+   :*irregulars*
+   :available-langs
+   :curr-lang
+   :set-lang!))
+(in-package :cl-inflector.langs)
 
 (defparameter *plurals-en-us*
   '(("(.*[aeiou])z$"             "\\1zzes")
@@ -61,7 +62,7 @@ singular->plurals regular expressions")
 
 (defparameter *uncountables-en-us*
   (list "equipment" "information" "rice" "money" "species" "series" "fish"
-	"sheep" "jeans" "news" ))
+        "sheep" "jeans" "news" ))
 
 (defparameter *irregulars-en-us*
   (alexandria:plist-alist

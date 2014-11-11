@@ -12,7 +12,9 @@
 	   plural-of
 	   singularize
 	   singular-of
-	   irregular?
+           :symbol-plural-of
+           :symbol-singular-of
+           irregular?
 	   irregular
 	   uncountable?
 	   uncountable
@@ -79,6 +81,12 @@
     (cond ((uncountable? word) word)
           ((irregular?   word) (get-irregular-singular word))
           (t (inflector-helper word *singulars*)))))
+
+(defun symbol-singular-of (word &key (package *package*))
+  (intern (string-upcase (singular-of word)) package))
+
+(defun symbol-plural-of (word &key (package *package*))
+  (intern (string-upcase (plural-of word)) package))
 
 (defun inflector-helper (word regexes)
   (if (null regexes)

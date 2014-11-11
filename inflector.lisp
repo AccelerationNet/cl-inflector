@@ -1,13 +1,13 @@
 (defpackage :cl-inflector
   (:use :cl :cl-ppcre)
   (:import-from cl-inflector.langs
-   :*plurals*
-   :*singulars*
-   :*uncountables*
-   :*irregulars*
-   :available-langs
-   :curr-lang
-   :set-lang!)
+   :available-languages
+   :current-language
+   :set-language!
+   :irregulars
+   :plurals
+   :uncountables
+   :singulars)
   (:export
    :pluralize
    :plural-of
@@ -18,28 +18,28 @@
    :irregular
    :uncountable?
    :uncountable
-   :available-langs
-   :curr-lang
-   :set-lang!))
+   :available-languages
+   :current-language
+   :set-language!))
 
 (in-package :cl-inflector)
 
 (defun uncountable (word)
   "Notifies the inflector that a word is uncountable."
-  (pushnew word *uncountables* :test #'string-equal))
+  (pushnew word (uncountables (current-language)) :test #'string-equal))
 
 (defun uncountable? (word)
-  (member word *uncountables* :test #'string-equal))
+  (member word (uncountables (current-language)) :test #'string-equal))
 
 (defun irregular (singular plural)
   "Adds a irregular single-plural set to the irregular list"
-  (push (cons singular plural) *irregulars*))
+  (push (cons singular plural) (irregulars (current-language))))
 
 (defun irregular-plural? (word)
-  (rassoc word *irregulars* :test #'string-equal))
+  (rassoc word (irregulars (current-language)) :test #'string-equal))
 
 (defun irregular-singular? (word)
-  (car (assoc word *irregulars* :test #'string-equal)))
+  (car (assoc word (irregulars (current-language)) :test #'string-equal)))
 
 (defun irregular? (word)
   (or (irregular-singular? word)
@@ -48,16 +48,16 @@
 (defun get-irregular-singular (plural)
   (if (irregular-singular? plural)
       plural
-      (car (rassoc plural *irregulars* :test #'string-equal))))
+      (car (rassoc plural (irregulars (current-language)) :test #'string-equal))))
 
 (defun get-irregular-plural (singular)
   (if (irregular-plural? singular)
       singular
-      (cdr (assoc singular *irregulars* :test #'string-equal))))
+      (cdr (assoc singular (irregulars (current-language)) :test #'string-equal))))
 
 (defun plural (rule replacement)
   "Adds a plural rule, where RULE can be either a string or a regex, and REPLACEMENT can contain capture references defined in RULE"
-  (push (list rule replacement) *plurals*))
+  (push (list rule replacement) (plurals (current-language))))
 
 (defun plural-of (word)
   "Returns the plural of a word if it's singular, or itself if already plural"
@@ -67,11 +67,11 @@
 
     (cond ((uncountable? word) word)
           ((irregular?   word) (get-irregular-plural word))
-          (t (inflector-helper word *plurals*)))))
+          (t (inflector-helper word (plurals (current-language)))))))
 
 (defun singular (rule replacement)
   "Adds a singular rule, where RULE can be either a string or a regex, and REPLACEMENT can contain capture references defined in RULE"
-  (push (list rule replacement) *singulars*))
+  (push (list rule replacement) (singulars (current-language))))
 
 (defun singular-of (word)
   "Returns the singular of a word if it's singular, or itself if already singular"
@@ -80,7 +80,7 @@
                 (T (princ-to-string word)))))
     (cond ((uncountable? word) word)
           ((irregular?   word) (get-irregular-singular word))
-          (t (inflector-helper word *singulars*)))))
+          (t (inflector-helper word (singulars (current-language)))))))
 
 (defun symbol-singular-of (word &key (package *package*))
   (intern (string-upcase (singular-of word)) package))

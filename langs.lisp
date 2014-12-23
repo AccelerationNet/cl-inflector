@@ -6,22 +6,29 @@
    :*current-language*
    :available-languages
    :current-language
+   :current-language-name
    :set-language!
    :irregulars
    :plurals
    :uncountables
-   :singulars))
+   :singulars)
+  (:documentation "Package with the language class and its methods and a few functions to handle the language class."))
 (in-package :cl-inflector.langs)
 
 (defclass language ()
-  ((name :accessor name :initarg :name :initform nil)
-   (plurals :accessor plurals :initarg :plurals :initform nil)
-   (singulars :accessor singulars :initarg :singulars :initform nil)
-   (uncountables :accessor uncountables :initarg :uncountables :initform nil)
-   (irregulars :accessor irregulars :initarg :irregulars :initform nil)))
+  ((name :accessor name :initarg :name :initform nil
+         :documentation "Name of the language as a keyword.")
+   (plurals :accessor plurals :initarg :plurals :initform nil
+            :documentation "Alist with (singular-matching-regex plural-equiv).")
+   (singulars :accessor singulars :initarg :singulars :initform nil
+              :documentation "Alist with (plural-matching-regex singular-equiv).")
+   (uncountables :accessor uncountables :initarg :uncountables :initform nil
+                 :documentation "List with uncountable words.")
+   (irregulars :accessor irregulars :initarg :irregulars :initform nil
+               :documentation "Alist with irregular words pairs."))
+  (:documentation "Language object to hold all lists with regexps, irregulars and uncountable words."))
 
 (defparameter +en_us+
-  
   (make-instance
    'language
    :name :en_us
@@ -43,7 +50,7 @@
               ("(ax|test)is$"              "\\1es")
               ("s$"                        "s")
               ("$"                         "s"))
-   
+
    :singulars '(("(database)s$"        "\\1")
                 ("(.*[aeiou]z)zes$"    "\\1")
                 ("(matr)ices$"         "\\1ix")
@@ -65,7 +72,7 @@
                 ("(thie|lea|loa)ves$"      "\\1f")
                 ("([lr])ves$"          "\\1f")
                 ("([^f])ves$"          "\\1fe")
-    
+
                 ("(tive)s$"            "\\1")
                 ("(hive)s$"            "\\1")
                 ("(^analy)ses$"        "\\1sis")
@@ -74,8 +81,8 @@
                 ("(n)ews$"            "\\1ews")
                 ("s$" ""))
 
-   :uncountables (list "equipment" "information" "rice" "money" "species" "series" "fish"
-                       "sheep" "jeans" "news" )
+   :uncountables (list "equipment" "information" "rice" "money" "species"
+                       "series" "fish" "sheep" "jeans" "news")
 
    :irregulars (alexandria:plist-alist
                 (list
@@ -86,8 +93,7 @@
                  "child"  "children"
                  "move"   "moves"
                  "movie"  "movies"
-                 "buzz"   "buzzes"))
-   )
+                 "buzz"   "buzzes")))
   "Adapted *cough*ripped*cough* from rails inflector.rb singular->plurals regular expressions")
 
 (defparameter +pt_br+
@@ -133,23 +139,25 @@
                 (list "é" "são" "tem" "têm"))))
 
 (defparameter +languages+
-  (list +en_us+ +pt_br+))
+  (list +en_us+ +pt_br+)
+  "List of all available languages objects.")
 
-
-(defparameter *current-language* +en_us+ "Current language used. Defaults to en_US.")
+(defparameter *current-language* +en_us+
+  "Current language used. Defaults to en_US.")
 
 (defun available-languages ()
+  "Returns the name of all available languages."
   (mapcar #'name +languages+))
 
 (defun set-language! (lang &optional (clone? nil))
   "Sets the current language, if clone? then set to a copy of the current language
-   this is useful - eg in testing or creating custom dictionaries"
+   this is useful - eg in testing or creating custom dictionaries."
   (setf lang
         (etypecase lang
           (symbol (find lang +languages+ :key #'name))
           (language lang)))
   (unless (member lang +languages+)
-    (error "Unsupported language"))  
+    (error "Unsupported language"))
   (setf *current-language*
         (if clone?
             (make-instance 'language
@@ -162,4 +170,9 @@
   *current-language*)
 
 (defun current-language ()
+  "Returns the current language object."
   *current-language*)
+
+(defun current-language-name ()
+  "Returns the name of the current language."
+  (name (current-language)))

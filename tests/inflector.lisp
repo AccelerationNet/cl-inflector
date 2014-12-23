@@ -25,7 +25,7 @@
   (assert-equal "sexes" (plural-of "sex")))
 
 (define-test test-add-irregular-en-us ()
-  (set-language! :en_US t)  
+  (set-language! :en_US t)
   (assert-equal "blurbles" (plural-of "blurble"))
   (irregular "blurble" "blurblix")
   (assert-equal "blurblix" (plural-of "blurble")))
@@ -38,7 +38,7 @@
   (assert-equal "sheep" (singular-of "sheep")))
 
 (define-test test-add-uncountable-en-us ()
-  (set-language! :en_US t)  
+  (set-language! :en_US t)
   (assert-equal "cackles" (plural-of "cackle"))
   (uncountable "cackle")
   (assert-equal "cackle" (plural-of "cackle")))
@@ -51,7 +51,8 @@
 
 (define-test test-plural-of-regular-pt-br ()
   (set-language! :pt_BR t)
-  (let ((reg-list '("alemão" "irmão" "limão" "gás" "inglês" "homem" "anzol" "fiel" "ramal" "paz" "mar" "país")))
+  (let ((reg-list '("alemão" "irmão" "limão" "gás" "inglês" "homem" "anzol"
+                    "fiel" "ramal" "paz" "mar" "país")))
     (mapcar (lambda (word)
               (assert-equal (singular-of (plural-of word)) word))
             reg-list)))
@@ -62,7 +63,7 @@
   (assert-equal "têm" (plural-of "tem")))
 
 (define-test test-add-irregular-pt-br ()
-  (set-language! :pt_BR t)  
+  (set-language! :pt_BR t)
   (assert-equal "blurbles" (plural-of "blurble"))
   (irregular "blurble" "blurbleses")
   (assert-equal "blurbleses" (plural-of "blurble")))
@@ -75,7 +76,7 @@
   (assert-equal "tênis" (singular-of "tênis")))
 
 (define-test test-add-uncountable-pt-br ()
-  (set-language! :pt_BR t)  
+  (set-language! :pt_BR t)
   (assert-equal "cackles" (plural-of "cackle"))
   (uncountable "cackle")
   (assert-equal "cackle" (plural-of "cackle")))

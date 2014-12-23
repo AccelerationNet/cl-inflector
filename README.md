@@ -1,13 +1,14 @@
 CL-Inflector
 ========
 
-A common lisp library to easily pluralize and singularize English words.
+A common lisp library to easily pluralize and singularize English and Portuguese words.
 
 This is a port of the ruby ActiveSupport Inflector module.
 
 Installation
 ------------------
 Just use [Quicklisp](www.quicklisp.org):
+
     > (ql:quickload 'cl-inflector)
 
 Usage
@@ -73,26 +74,34 @@ Use `uncountable` to add an uncountable:
     > (plural-of "advice")
     "advice"
 
+You can also pluralize/singularize symbols (very useful for writing macros):
+
+    > (symbol-plural-of 'book)
+    BOOKS
+    > (symbol-singular-of 'pages)
+    PAGE
+    
 Internationalization support
 ---------------
 Currently, cl-inflector has built-in support for english(`en_US`) and brazilian portuguese(`pt_BR`), and it also offers a simple API to change between languages:
 
-    > (available-langs)
+    > (available-languages)
     (:EN_US :PT_BR)
-    > (curr-lang)
+    > (current-language-name)
     :EN_US
 
-For changing between languages, use `set-lang!`:
+For changing between languages, use `set-language!`:
 
     > (plural-of "país")
     "país"
-    > (set-lang! :pt_BR)
+    > (set-language! :pt_BR)
     :PT_BR
     > (plural-of "país")
     "países"
 
 You can add irregular words and uncountable in the same way as presented above, but you still does not support adding a whole new language.
 
+For more examples, check the [tests source](https://github.com/AccelerationNet/cl-inflector/blob/master/tests/inflector.lisp).
 License
 ---------------
 

@@ -1,5 +1,6 @@
 (defpackage :cl-inflector
   (:use :cl :cl-ppcre)
+  (:nicknames inflector)
   (:import-from cl-inflector.langs
    :available-languages
    :current-language

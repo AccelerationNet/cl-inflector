@@ -142,7 +142,7 @@
   (list +en_us+ +pt_br+)
   "List of all available languages objects.")
 
-(defparameter *current-language* +en_us+
+(defparameter *current-language* +en_US+
   "Current language used. Defaults to en_US.")
 
 (defun available-languages ()

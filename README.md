@@ -74,7 +74,7 @@ Use `uncountable` to add an uncountable:
     > (plural-of "advice")
     "advice"
 
-You can also pluralize/singularize symbols:
+You can also pluralize/singularize symbols (very useful for writing macros):
 
     > (symbol-plural-of 'book)
     BOOKS

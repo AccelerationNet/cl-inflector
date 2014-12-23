@@ -16,6 +16,7 @@
    :singularize
    :singular-of
    :symbol-plural-of
+   :symbol-singular-of
    :irregular?
    :irregular
    :uncountable?

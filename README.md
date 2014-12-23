@@ -74,6 +74,12 @@ Use `uncountable` to add an uncountable:
     > (plural-of "advice")
     "advice"
 
+You can also pluralize/singularize symbols:
+    > (symbol-plural-of 'book)
+    BOOKS
+    > (symbol-singular-of 'pages)
+    PAGE
+    
 Internationalization support
 ---------------
 Currently, cl-inflector has built-in support for english(`en_US`) and brazilian portuguese(`pt_BR`), and it also offers a simple API to change between languages:

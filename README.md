@@ -75,6 +75,7 @@ Use `uncountable` to add an uncountable:
     "advice"
 
 You can also pluralize/singularize symbols:
+
     > (symbol-plural-of 'book)
     BOOKS
     > (symbol-singular-of 'pages)

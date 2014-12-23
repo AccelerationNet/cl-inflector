@@ -94,6 +94,7 @@ For changing between languages, use `set-language!`:
 
 You can add irregular words and uncountable in the same way as presented above, but you still does not support adding a whole new language.
 
+For more examples, check the [tests source](https://github.com/AccelerationNet/cl-inflector/blob/master/tests/inflector.lisp).
 License
 ---------------
 

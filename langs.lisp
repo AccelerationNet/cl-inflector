@@ -139,7 +139,7 @@
                 (list "é" "são" "tem" "têm"))))
 
 (defparameter +languages+
-  (list +en_us+ +pt_br+)
+  (list +en_US+ +pt_BR+)
   "List of all available languages objects.")
 
 (defparameter *current-language* +en_US+

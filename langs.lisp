@@ -6,6 +6,7 @@
    :*current-language*
    :available-languages
    :current-language
+   :current-language-name
    :set-language!
    :irregulars
    :plurals
@@ -171,3 +172,7 @@
 (defun current-language ()
   "Returns the current language object."
   *current-language*)
+
+(defun current-language-name ()
+  "Returns the name of the current language."
+  (name (current-language)))

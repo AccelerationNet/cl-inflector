@@ -4,6 +4,7 @@
   (:import-from cl-inflector.langs
    :available-languages
    :current-language
+   :current-language-name
    :set-language!
    :irregulars
    :plurals
@@ -21,6 +22,7 @@
    :uncountable
    :available-languages
    :current-language
+   :current-language-name
    :set-language!)
   (:documentation "Package with function to pluralize/singularize words."))
 (in-package :cl-inflector)

@@ -85,10 +85,11 @@ Internationalization support
 ---------------
 Currently, cl-inflector has built-in support for english(`en_US`) and brazilian portuguese(`pt_BR`), and it also offers a simple API to change between languages:
 
-    > (available-langs)
+    > (available-languages)
     (:EN_US :PT_BR)
-    > (curr-lang)
+    > (name (curr-language))
     :EN_US
+
 
 For changing between languages, use `set-language!`:
 

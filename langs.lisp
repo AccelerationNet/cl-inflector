@@ -28,10 +28,10 @@
                :documentation "Alist with irregular words pairs."))
   (:documentation "Language object to hold all lists with regexps, irregulars and uncountable words."))
 
-(defparameter +en_US+
+(defparameter +en_us+
   (make-instance
    'language
-   :name :en_US
+   :name :en_us
    :plurals '(("(.*[aeiou])z$"             "\\1zzes")
               ("^(ox)$"                    "\\1en")
               ("([m|l])ouse$"              "\\1ice")
@@ -96,10 +96,10 @@
                  "buzz"   "buzzes")))
   "Adapted *cough*ripped*cough* from rails inflector.rb singular->plurals regular expressions")
 
-(defparameter +pt_BR+
+(defparameter +pt_br+
   (make-instance
    'language
-   :name :pt_BR
+   :name :pt_br
    :plurals '(("^(alem|c|p)ão" "\\1ães")
               ("^(irm|m)ão$" "\\1ãos")
               ("ão$" "ões")
@@ -139,10 +139,10 @@
                 (list "é" "são" "tem" "têm"))))
 
 (defparameter +languages+
-  (list +en_US+ +pt_BR+)
+  (list +en_us+ +pt_br+)
   "List of all available languages objects.")
 
-(defparameter *current-language* +en_US+
+(defparameter *current-language* +en_us+
   "Current language used. Defaults to en_US.")
 
 (defun available-languages ()
@@ -151,7 +151,7 @@
 
 (defun set-language! (lang &optional (clone? nil))
   "Sets the current language, if clone? then set to a copy of the current language
-   this is useful - eg in testing or creating custom dictionaries"
+   this is useful - eg in testing or creating custom dictionaries."
   (setf lang
         (etypecase lang
           (symbol (find lang +languages+ :key #'name))
